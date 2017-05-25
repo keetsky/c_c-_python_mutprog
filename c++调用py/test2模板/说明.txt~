@@ -1,0 +1,44 @@
+c++中调用 .py模块
+
+//g++ -o bb bb.cpp -I/usr/include/python2.7 -L/usr/lib64/python2.7/config -lpython2.7
+//g++ bb.cpp -o bb -lpython2.7
+//函数介绍http://blog.csdn.net/magictong/article/details/8947892
+//c++中调用python       http://blog.csdn.net/c_cyoxi/article/details/23978007
+
+/*
+Py_BuildValue("")                       None
+
+Py_BuildValue("i",123)                 123
+
+Py_BuildValue("iii",123, 456, 789)     (123, 456, 789)
+
+Py_BuildValue("s","hello")             'hello'
+
+Py_BuildValue("ss","hello", "world")    ('hello', 'world')
+
+Py_BuildValue("s#","hello", 4)         'hell'
+
+Py_BuildValue("()")                     ()
+
+Py_BuildValue("(i)",123)               (123,)
+
+Py_BuildValue("(ii)",123, 456)         (123, 456)
+
+Py_BuildValue("(i,i)",123, 456)        (123, 456)
+
+Py_BuildValue("[i,i]",123, 456)        [123, 456]
+
+Py_BuildValue("{s:i,s:i}",
+
+                 "abc", 123, "def", 456)    {'abc': 123, 'def': 456}
+
+Py_BuildValue("((ii)(ii))(ii)",
+
+                 1, 2, 3, 4, 5, 6)         (((1, 2), (3, 4)), (5, 6))
+*/
+
+编译（1）：g++ bb.cpp -o bb -lpython2.7
+编译（2）：采用cmakelist
+          cd当前目录   cmake ..     make -j4  ./testcpp
+          或：修改程序为 PyRun_SimpleString("sys.path.append('../')");
+              mkdir build   && cd build       cmake ..   make -j4    ./testcpp

@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 2.8)
+project(testcpp)  
+
+
+include_directories( 
+   	/usr/include/python2.7
+                  )
+link_directories(
+	/usr/lib/python2.7
+ 	)
+link_libraries( 
+	-lpython2.7
+	)
+
+add_executable(testcpp testcpp.cpp)  
+
+#target_link_libraries(testcpp python2.7) #加不加都无影响，因为前面有写链接
